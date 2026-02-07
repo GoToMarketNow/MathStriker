@@ -1,0 +1,62 @@
+{
+  "version": "v1",
+  "domains": [
+    {
+      "id": "multiplication",
+      "label": "Multiplication",
+      "gradeBands": ["2-3", "3-4"],
+      "skillTags": [
+        { "id": "mult_facts", "label": "Multiplication Facts (0–12)", "subskills": ["facts_0_5", "facts_6_9", "facts_10_12"] },
+        { "id": "mult_properties", "label": "Properties (commutative, distributive)", "subskills": ["commutative", "distributive"] },
+        { "id": "mult_arrays", "label": "Visual Arrays", "subskills": ["array_model", "array_interpret"] },
+        { "id": "mult_missing_factor", "label": "Missing Factor (□ × b = c)", "subskills": ["missing_first", "missing_second"] },
+        { "id": "mult_compare", "label": "Compare Products", "subskills": ["greater_less", "estimate"] }
+      ]
+    },
+    {
+      "id": "division",
+      "label": "Division",
+      "gradeBands": ["3", "3-4"],
+      "skillTags": [
+        { "id": "div_facts", "label": "Division Facts (within 100)", "subskills": ["facts_small", "facts_large"] },
+        { "id": "div_interpretation", "label": "Sharing & Grouping", "subskills": ["sharing", "grouping"] },
+        { "id": "div_remainders", "label": "Division with Remainders", "subskills": ["simple_remainder", "interpret_remainder"] },
+        { "id": "div_inverse", "label": "Inverse of Multiplication", "subskills": ["fact_family", "check_with_mult"] }
+      ]
+    },
+    {
+      "id": "fractions",
+      "label": "Fractions",
+      "gradeBands": ["2-3", "3-4"],
+      "skillTags": [
+        { "id": "frac_identify", "label": "Identify Fractions (visual)", "subskills": ["from_bar", "from_circle", "from_set"] },
+        { "id": "frac_equivalent", "label": "Equivalent Fractions", "subskills": ["halves_fourths", "thirds_sixths", "general"] },
+        { "id": "frac_compare", "label": "Compare Fractions", "subskills": ["same_denom", "same_numer", "benchmark_half"] },
+        { "id": "frac_numberline", "label": "Fractions on Number Line", "subskills": ["place", "identify"] },
+        { "id": "frac_of_set", "label": "Fraction of a Set", "subskills": ["unit_fraction", "non_unit"] }
+      ]
+    },
+    {
+      "id": "patterns",
+      "label": "Patterns & Algebraic Thinking",
+      "gradeBands": ["2-3", "3-4"],
+      "skillTags": [
+        { "id": "pattern_number", "label": "Number Patterns", "subskills": ["skip_count", "growing", "decreasing"] },
+        { "id": "pattern_shape", "label": "Shape Patterns (visual)", "subskills": ["repeating", "growing_shape"] },
+        { "id": "pattern_rule", "label": "Find the Rule", "subskills": ["additive", "multiplicative"] },
+        { "id": "function_machine", "label": "Input/Output Tables", "subskills": ["single_op", "two_op"] }
+      ]
+    },
+    {
+      "id": "word_problems",
+      "label": "Word Problems (Cross-skill)",
+      "gradeBands": ["2-3", "3-4"],
+      "skillTags": [
+        { "id": "wp_mult", "label": "Multiplication Word Problems", "subskills": ["equal_groups", "array_context", "comparison"] },
+        { "id": "wp_div", "label": "Division Word Problems", "subskills": ["sharing_context", "grouping_context"] },
+        { "id": "wp_frac", "label": "Fraction Word Problems", "subskills": ["part_of_whole", "part_of_set"] },
+        { "id": "wp_multi_step", "label": "Multi-step Word Problems", "subskills": ["two_step", "mixed_ops"] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rajdhani:wght@500;600;700&display=swap');
+
+:root {
+  /* Primary (Pitch Green) */
+  --c-primary-500: #22c55e;
+  --c-primary-600: #16a34a;
+  --c-primary-700: #15803d;
+
+  /* Secondary (Electric Blue) */
+  --c-secondary-500: #3b82f6;
+  --c-secondary-600: #2563eb;
+
+  /* Accent (Goal Gold) */
+  --c-accent-500: #f59e0b;
+
+  /* Support */
+  --c-success-500: #22c55e;
+  --c-warning-500: #f59e0b;
+  --c-error-500: #ef4444;
+
+  /* Surfaces */
+  --c-bg: #f0fdf4;
+  --c-surface: #ffffff;
+  --c-surface-2: #f8fafc;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--c-bg);
+  color: #1e293b;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}

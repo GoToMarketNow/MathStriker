@@ -1,0 +1,34 @@
+{
+  "name": "@math-striker/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "question-bank:generate": "tsx scripts/generate-question-bank.ts",
+    "question-bank:seed": "tsx scripts/seed-question-bank.ts"
+  },
+  "dependencies": {
+    "@math-striker/shared": "workspace:*",
+    "fastify": "^4.28.0",
+    "@fastify/cors": "^9.0.0",
+    "drizzle-orm": "^0.33.0",
+    "postgres": "^3.4.4",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "tsx": "^4.16.0",
+    "drizzle-kit": "^0.24.0",
+    "@types/node": "^22.0.0"
+  }
+}

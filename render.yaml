@@ -1,0 +1,42 @@
+# Render Blueprint — Math Striker API + Postgres
+# https://render.com/docs/blueprint-spec
+# Deploy: Connect repo in Render Dashboard → "New Blueprint Instance"
+
+services:
+  - type: web
+    name: mathstriker-api
+    runtime: node
+    region: oregon
+    plan: free
+    branch: main
+    rootDir: .
+    buildCommand: |
+      corepack enable &&
+      pnpm install --frozen-lockfile &&
+      pnpm --filter @math-striker/shared run build &&
+      pnpm --filter @math-striker/api run build
+    startCommand: |
+      cd apps/api && node dist/server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: API_HOST
+        value: 0.0.0.0
+      - key: API_PORT
+        value: 3001
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mathstriker-db
+          property: connectionString
+      - key: ADMIN_SEED_TOKEN
+        generateValue: true
+      - key: CORS_ORIGIN
+        value: https://mathstriker.vercel.app
+
+databases:
+  - name: mathstriker-db
+    plan: free
+    region: oregon
+    databaseName: mathstriker
+    user: mathstriker

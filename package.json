@@ -1,0 +1,29 @@
+{
+  "name": "math-striker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Math Striker — A mobile-first adaptive math & soccer learning game (Grades 2–4)",
+  "scripts": {
+    "dev": "pnpm --parallel --filter './apps/*' run dev",
+    "dev:web": "pnpm --filter @math-striker/web run dev",
+    "dev:api": "pnpm --filter @math-striker/api run dev",
+    "build": "pnpm --filter @math-striker/shared run build && pnpm --parallel --filter './apps/*' run build",
+    "build:shared": "pnpm --filter @math-striker/shared run build",
+    "build:api": "pnpm --filter @math-striker/shared run build && pnpm --filter @math-striker/api run build",
+    "build:web": "pnpm --filter @math-striker/shared run build && pnpm --filter @math-striker/web run build",
+    "lint": "pnpm -r run lint",
+    "format": "prettier --write '**/*.{ts,tsx,json,md}'",
+    "format:check": "prettier --check '**/*.{ts,tsx,json,md}'",
+    "typecheck": "pnpm -r run typecheck",
+    "db:generate": "pnpm --filter @math-striker/api run db:generate",
+    "db:push": "pnpm --filter @math-striker/api run db:push",
+    "db:studio": "pnpm --filter @math-striker/api run db:studio",
+    "question-bank:generate": "node packages/question-bank/generate.mjs",
+    "question-bank:seed": "pnpm --filter @math-striker/api run question-bank:seed",
+    "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}
