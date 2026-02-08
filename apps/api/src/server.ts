@@ -16,7 +16,6 @@ const app = Fastify({
   logger: { level: config.nodeEnv === 'development' ? 'info' : 'warn' },
 });
 
-// ─── Plugins ────────────────────────────────────────
 const corsOrigins = config.corsOrigin === '*'
   ? true
   : config.corsOrigin.split(',').map((o) => o.trim());
@@ -27,16 +26,14 @@ await app.register(cors, {
   credentials: true,
 });
 
-// ─── Health ─────────────────────────────────────────
 app.get('/health', async (): Promise<HealthResponse> => ({
   status: 'ok',
   timestamp: new Date().toISOString(),
   version: config.version,
 }));
 
-// ─── Admin Endpoints ────────────────────────────────
 app.all('/admin/seed', async (req, reply) => {
-  const auth = (req.headers.authorization || '').replace('Bearer ', '');
+  const auth = (req.headers.authorization || '').replace('Bearer ', '') || (req.query as Record<string, string>).token || '';
   if (!config.adminSeedToken || auth !== config.adminSeedToken) {
     return reply.code(401).send({ error: 'Unauthorized' });
   }
@@ -61,7 +58,6 @@ app.post('/admin/migrate', async (req, reply) => {
   }
 });
 
-// ─── Module Routes ──────────────────────────────────
 await app.register(identityRoutes);
 await app.register(sessionRoutes);
 await app.register(questionEngineRoutes);
@@ -70,33 +66,29 @@ await app.register(rewardsRoutes);
 await app.register(analyticsRoutes);
 await app.register(avatarRoutes);
 
-// ─── Startup Lifecycle ──────────────────────────────
 async function startup() {
-  // 1. Push DB schema (safe — Drizzle push is additive)
   try {
     await autoMigrate();
-    console.log('✅ Database schema synced');
+    console.log('Database schema synced');
   } catch (err) {
-    console.error('⚠️ Schema push failed (may need manual db:push):', err);
+    console.error('Schema push failed:', err);
   }
 
-  // 2. Auto-seed question bank if empty
   try {
     const result = await autoSeed();
     if (result.seeded) {
-      console.log(`✅ Question bank seeded: ${result.count} questions`);
+      console.log('Question bank seeded: ' + result.count + ' questions');
     } else {
-      console.log(`📚 Question bank already populated (${result.count} questions)`);
+      console.log('Question bank already populated: ' + result.count + ' questions');
     }
   } catch (err) {
-    console.error('⚠️ Auto-seed failed (use /admin/seed to retry):', err);
+    console.error('Auto-seed failed (use /admin/seed to retry):', err);
   }
 
-  // 3. Start server
   try {
     await app.listen({ port: config.port, host: config.host });
-    console.log(`⚽ Math Striker API v${config.version} running at http://localhost:${config.port}`);
-    console.log(`   Environment: ${config.nodeEnv}`);
+    console.log('Math Striker API v' + config.version + ' running at http://localhost:' + config.port);
+    console.log('Environment: ' + config.nodeEnv);
   } catch (err) {
     app.log.error(err);
     process.exit(1);
@@ -104,3 +96,8 @@ async function startup() {
 }
 
 startup();
+```
+
+Commit to `main`. Wait ~2 minutes for Render to redeploy. Then open this link in your browser:
+```
+https://mathstriker-api.onrender.com/admin/seed?token=aGBj%2BHQG5RweZ2gYfKQMXq775ZcZlJgOOlI%2FuOptgm4%3D
