@@ -1,7 +1,4 @@
 # Render Blueprint — Math Striker API + Postgres
-# https://render.com/docs/blueprint-spec
-# Deploy: Connect repo in Render Dashboard → "New Blueprint Instance"
-
 services:
   - type: web
     name: mathstriker-api
@@ -10,9 +7,10 @@ services:
     plan: free
     branch: main
     rootDir: .
+    nodeVersion: "22.12.0"
     buildCommand: |
-      corepack enable &&
-      pnpm install --frozen-lockfile &&
+      corepack prepare pnpm@9.15.4 --activate &&
+      pnpm install --no-frozen-lockfile &&
       pnpm --filter @math-striker/shared run build &&
       pnpm --filter @math-striker/api run build
     startCommand: |
