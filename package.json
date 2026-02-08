@@ -1,7 +1,7 @@
 {
   "name": "math-striker",
   "version": "0.1.0",
-  "private": true,
+  "private": true, "packageManager": "pnpm@9.15.4",
   "description": "Math Striker — A mobile-first adaptive math & soccer learning game (Grades 2–4)",
   "scripts": {
     "dev": "pnpm --parallel --filter './apps/*' run dev",
