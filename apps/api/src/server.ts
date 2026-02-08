@@ -35,7 +35,7 @@ app.get('/health', async (): Promise<HealthResponse> => ({
 }));
 
 // ─── Admin Endpoints ────────────────────────────────
-app.post('/admin/seed', async (req, reply) => {
+app.all('/admin/seed', async (req, reply) => {
   const auth = (req.headers.authorization || '').replace('Bearer ', '');
   if (!config.adminSeedToken || auth !== config.adminSeedToken) {
     return reply.code(401).send({ error: 'Unauthorized' });
