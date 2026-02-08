@@ -185,3 +185,5 @@ NODE_ENV=production
 **Backend:** Fastify, TypeScript, Drizzle ORM, PostgreSQL, Zod
 **Shared:** Zod schemas + TypeScript types
 **Infra:** Docker Compose, pnpm workspaces
+
+
